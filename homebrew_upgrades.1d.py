@@ -61,9 +61,11 @@ def main():
 
 
 def print_group(title: str, packages: list[Package]):
-    if len(packages) > 0:
-        plugin.print_menu_separator()
-        plugin.print_menu_item(title)
+    if len(packages) == 0:
+        return
+
+    plugin.print_menu_separator()
+    plugin.print_menu_item(title)
 
     longest_name_length = max(len(pkg.name) for pkg in packages)
 
