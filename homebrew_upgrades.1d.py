@@ -20,6 +20,7 @@ from dataclasses import dataclass
 import plugin
 
 PLUGIN_ICON = "🍺"
+BREW_PATH = "/opt/homebrew/bin/brew"  # default location for Apple silicon
 
 
 @dataclass
@@ -31,7 +32,7 @@ class Package:
 
 def main():
     cmd = subprocess.run(
-        ["brew", "outdated", "--json"],
+        [BREW_PATH, "outdated", "--json"],
         check=True,
         text=True,
         capture_output=True,
@@ -50,7 +51,7 @@ def main():
 
     plugin.print_menu_action(
         f"Upgrade {total} package(s)",
-        ["brew", "upgrade"],
+        [BREW_PATH, "upgrade"],
         background=True,
         refresh=True,
         sfimage="arrow.up.square",
@@ -72,7 +73,7 @@ def print_group(title: str, packages: list[Package]):
     for pkg in packages:
         plugin.print_menu_action(
             f"{pkg.name:<{longest_name_length}}   {pkg.current_version}",
-            ["brew", "upgrade", pkg.name],
+            [BREW_PATH, "upgrade", pkg.name],
             background=True,
             refresh=True,
             sfimage="shippingbox",

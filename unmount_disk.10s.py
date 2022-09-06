@@ -18,6 +18,7 @@ import os
 import plugin
 
 PLUGIN_ICON = ":opticaldiscdrive:"
+DISKUTIL_PATH = "/usr/sbin/diskutil"
 MOUNT_POINT = "/Volumes/Expansion"
 
 
@@ -27,7 +28,7 @@ def main():
 
     plugin.print_menu_action(
         PLUGIN_ICON,
-        ["diskutil", "unmountDisk", MOUNT_POINT],
+        [DISKUTIL_PATH, "unmountDisk", MOUNT_POINT],
         background=True,
         refresh=True,
     )

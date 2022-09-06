@@ -46,7 +46,7 @@ def main():
 
     plugin.print_menu_action(
         f"{time_prefix}{PLUGIN_ICON}",
-        [f"{CLICKED_ENV_VAR}=1", "python3", __file__],
+        [f"{CLICKED_ENV_VAR}=1", __file__],  # run the same script on click
         background=True,
         refresh=True,
     )

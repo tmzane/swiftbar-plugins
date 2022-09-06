@@ -20,6 +20,7 @@ from dataclasses import dataclass
 import plugin
 
 PLUGIN_ICON = "🐋"
+DOCKER_PATH = "/usr/local/bin/docker"
 
 
 @dataclass(frozen=True)
@@ -40,7 +41,7 @@ def main():
     plugin.print_menu_item("Context")
 
     cmd = subprocess.run(
-        ["docker", "context", "list", "--format=json"],
+        [DOCKER_PATH, "context", "list", "--format=json"],
         check=True,
         text=True,
         capture_output=True,
@@ -52,7 +53,7 @@ def main():
     for ctx in contexts:
         plugin.print_menu_action(
             ctx.name,
-            ["docker", "context", "use", ctx.name],
+            [DOCKER_PATH, "context", "use", ctx.name],
             background=True,
             refresh=True,
             checked=ctx.current,
@@ -63,7 +64,7 @@ def main():
 
     try:
         cmd = subprocess.run(
-            ["docker", "ps", "--format={{.Names}}\t{{.Status}}"],
+            [DOCKER_PATH, "ps", "--format={{.Names}}\t{{.Status}}"],
             check=True,
             text=True,
             capture_output=True,
@@ -78,7 +79,7 @@ def main():
     for ctn in containers:
         plugin.print_menu_action(
             f"{ctn.name:<{longest_name_length}}   {ctn.status}",
-            ["docker", "logs", ctn.name],
+            [DOCKER_PATH, "logs", ctn.name],
             font="SFMono-Regular",  # use a monospaced font for a proper alignment
         )
 
