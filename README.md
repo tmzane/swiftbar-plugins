@@ -26,6 +26,9 @@ ln -s /path/to/repo/plugin_name.py $SWIFTBAR_PLUGINS_PATH/plugin_name.py
 * [Pomodoro timer](#pomodoro-timer)
 * [Unmount disk](#unmount-disk)
 
+Most plugins support configuration via the top-level constants, such as
+`PLUGIN_ICON`. Feel free to modify them for your needs.
+
 ### Docker containers
 
 ![screenshot](screenshots/docker_containers.png)
