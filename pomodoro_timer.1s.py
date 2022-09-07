@@ -15,12 +15,17 @@
 
 import datetime
 import os
+import subprocess
 
 import plugin
 
 PLUGIN_ICON = "🍅"
 WORK_INTERVAL = datetime.timedelta(minutes=25)
 TMP_FILE = os.path.join(os.environ["TMPDIR"], "swiftbar.pomodoro.deadline")
+
+NOTIFICATION_ON = True
+NOTIFICATION_TEXT = "Well done! Feel free to take a break"
+OSASCRIPT_PATH = "/usr/bin/osascript"
 
 
 def main():
@@ -43,6 +48,9 @@ def main():
                 time_prefix = f"{minutes:02}:{seconds:02} "
             else:
                 os.remove(TMP_FILE)
+                if NOTIFICATION_ON:
+                    NOTIFY = f'display notification "{NOTIFICATION_TEXT}" with title "{PLUGIN_ICON} Pomodoro Timer"'
+                    subprocess.run([OSASCRIPT_PATH, "-e", NOTIFY], check=True)
 
     plugin.print_menu_action(
         f"{time_prefix}{PLUGIN_ICON}",
