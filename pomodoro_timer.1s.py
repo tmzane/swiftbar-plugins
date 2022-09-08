@@ -38,19 +38,16 @@ def main():
         return
 
     time_prefix = ""
-    if os.path.exists(TMP_FILE):
-        with open(TMP_FILE, "r") as f:
-            deadline = datetime.datetime.fromisoformat(f.read())
-            diff = deadline - datetime.datetime.now()
-            if diff.total_seconds() > 0:
-                minutes = diff.seconds // 60
-                seconds = diff.seconds % 60
-                time_prefix = f"{minutes:02}:{seconds:02} "
-            else:
-                os.remove(TMP_FILE)
-                if NOTIFICATION_ON:
-                    NOTIFY = f'display notification "{NOTIFICATION_TEXT}" with title "{PLUGIN_ICON} Pomodoro Timer"'
-                    subprocess.run([OSASCRIPT_PATH, "-e", NOTIFY], check=True)
+    if Timer.is_ticking():
+        time = Timer.time_left()
+        if time.total_seconds() > 0:
+            minutes = time.seconds // 60
+            seconds = time.seconds % 60
+            time_prefix = f"{minutes:02}:{seconds:02} "
+        else:
+            Timer.stop()
+            if NOTIFICATION_ON:
+                display_notification()
 
     plugin.print_menu_action(
         f"{time_prefix}{PLUGIN_ICON}",
@@ -61,17 +58,38 @@ def main():
 
 
 def on_click():
-    # there are two possible states when the icon is clicked:
+    if Timer.is_ticking():
+        Timer.stop()
+    else:
+        Timer.start()
 
-    # 1. the timer is ticking, so we need to stop it
-    if os.path.exists(TMP_FILE):
+
+class Timer:
+    @classmethod
+    def start(cls):
+        with open(TMP_FILE, "w") as f:
+            deadline = datetime.datetime.now() + WORK_INTERVAL
+            f.write(deadline.isoformat())
+
+    @classmethod
+    def stop(cls):
         os.remove(TMP_FILE)
-        return
 
-    # 2. the timer is off, so we need to start it
-    with open(TMP_FILE, "w") as f:
-        deadline = datetime.datetime.now() + WORK_INTERVAL
-        f.write(deadline.isoformat())
+    @classmethod
+    def is_ticking(cls) -> bool:
+        return os.path.exists(TMP_FILE)
+
+    @classmethod
+    def time_left(cls) -> datetime.timedelta:
+        with open(TMP_FILE, "r") as f:
+            text = f.read()
+            deadline = datetime.datetime.fromisoformat(text)
+            return deadline - datetime.datetime.now()
+
+
+def display_notification():
+    SCRIPT = f'display notification "{NOTIFICATION_TEXT}" with title "{PLUGIN_ICON} Pomodoro Timer"'
+    subprocess.run([OSASCRIPT_PATH, "-e", SCRIPT], check=True)
 
 
 if __name__ == "__main__":
