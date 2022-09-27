@@ -74,6 +74,9 @@ def main():
         return
 
     containers = [Container(*line.split("\t")) for line in cmd.stdout.splitlines()]
+    if len(containers) == 0:
+        return
+
     longest_name_length = max(len(ctn.name) for ctn in containers)
 
     for ctn in containers:
