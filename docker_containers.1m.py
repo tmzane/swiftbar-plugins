@@ -21,6 +21,7 @@ import plugin
 
 PLUGIN_ICON = "🐋"
 DOCKER_PATH = "/usr/local/bin/docker"
+MONOSPACED_FONT = "SFMono-Regular"
 
 
 @dataclass(frozen=True)
@@ -83,7 +84,7 @@ def main():
         plugin.print_menu_action(
             f"{ctn.name:<{longest_name_length}}   {ctn.status}",
             [DOCKER_PATH, "logs", ctn.name],
-            font="SFMono-Regular",  # use a monospaced font for a proper alignment
+            font=MONOSPACED_FONT,  # use a monospaced font for a proper alignment
         )
 
 

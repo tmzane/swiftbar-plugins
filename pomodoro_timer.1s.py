@@ -23,18 +23,19 @@ PLUGIN_ICON = "🍅"
 WORK_INTERVAL = datetime.timedelta(minutes=25)
 TMP_FILE = os.path.join(os.environ["TMPDIR"], "swiftbar.pomodoro.deadline")
 
+OSASCRIPT_PATH = "/usr/bin/osascript"
 NOTIFICATION_ON = True
 NOTIFICATION_TEXT = "Well done! Feel free to take a break"
-OSASCRIPT_PATH = "/usr/bin/osascript"
+NOTIFICATION_SCRIPT = f'display notification "{NOTIFICATION_TEXT}" with title "{PLUGIN_ICON} Pomodoro Timer"'
 
 
 def main():
-    # a special environment variable indicating that
-    # the script has been run because a user has clicked the icon
-    CLICKED_ENV_VAR = "CLICKED"
-
-    if os.getenv(CLICKED_ENV_VAR) is not None:
-        on_click()
+    # has the script been run because of a user's click?
+    if os.getenv("CLICK") is not None:
+        if Timer.is_ticking():
+            Timer.stop()
+        else:
+            Timer.start()
         return
 
     time_prefix = ""
@@ -51,17 +52,10 @@ def main():
 
     plugin.print_menu_action(
         f"{time_prefix}{PLUGIN_ICON}",
-        [f"{CLICKED_ENV_VAR}=1", __file__],  # run the same script on click
+        ["CLICK=1", __file__],  # run the same script on click
         background=True,
         refresh=True,
     )
-
-
-def on_click():
-    if Timer.is_ticking():
-        Timer.stop()
-    else:
-        Timer.start()
 
 
 class Timer:
@@ -88,8 +82,7 @@ class Timer:
 
 
 def display_notification():
-    SCRIPT = f'display notification "{NOTIFICATION_TEXT}" with title "{PLUGIN_ICON} Pomodoro Timer"'
-    subprocess.run([OSASCRIPT_PATH, "-e", SCRIPT], check=True)
+    subprocess.run([OSASCRIPT_PATH, "-e", NOTIFICATION_SCRIPT], check=True)
 
 
 if __name__ == "__main__":
