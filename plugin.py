@@ -6,8 +6,6 @@ See https://github.com/swiftbar/SwiftBar#plugin-api for details.
 import sys
 import typing
 
-import typing_extensions as typingx
-
 
 class Params(typing.TypedDict, total=False):
     """
@@ -56,7 +54,7 @@ class Writer(typing.Protocol):
         ...
 
 
-def print_menu_item(text: str, *, out: Writer = sys.stdout, **params: typingx.Unpack[Params]):
+def print_menu_item(text: str, *, out: Writer = sys.stdout, **params: typing.Unpack[Params]):
     """
     Print a read-only menu item.
     """
@@ -66,7 +64,7 @@ def print_menu_item(text: str, *, out: Writer = sys.stdout, **params: typingx.Un
 
 
 def print_menu_action(text: str, cmd: list[str], *, background: bool = False, out: Writer = sys.stdout,
-                      **params: typingx.Unpack[Params]):
+                      **params: typing.Unpack[Params]):
     """
     Print an interactive menu item that runs the provided command on click.
     """
