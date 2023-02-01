@@ -12,7 +12,7 @@ class TestPlugin(unittest.TestCase):
 
     def test_print_menu_action(self):
         with io.StringIO() as buf:
-            plugin.print_menu_action("test", ["ps", "aux"], background=True, out=buf)
+            plugin.print_menu_action("test", ["ps", "aux"], out=buf)
             self.assertEqual(buf.getvalue(), "test | shell=ps param0=aux terminal=False\n")
 
     def test_print_menu_separator(self):

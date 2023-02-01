@@ -29,7 +29,6 @@ def main():
     plugin.print_menu_action(
         PLUGIN_ICON,
         [DISKUTIL_PATH, "unmountDisk", MOUNT_POINT],
-        background=True,
         refresh=True,
     )
 

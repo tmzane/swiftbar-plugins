@@ -53,7 +53,6 @@ def main():
     plugin.print_menu_action(
         f"{time_prefix}{PLUGIN_ICON}",
         ["CLICK=1", __file__],  # run the same script on click
-        background=True,
         refresh=True,
     )
 

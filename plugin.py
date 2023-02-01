@@ -63,23 +63,19 @@ def print_menu_item(text: str, *, out: Writer = sys.stdout, **params: typing.Unp
     print(f"{text} | {params_str}", file=out)
 
 
-def print_menu_action(text: str, cmd: list[str], *, background: bool = False, out: Writer = sys.stdout,
-                      **params: typing.Unpack[Params]):
+def print_menu_action(text: str, cmd: list[str], *, open_terminal: bool = False, out: Writer = sys.stdout, **params: typing.Unpack[Params]):
     """
     Print an interactive menu item that runs the provided command on click.
     """
 
-    untyped_params = dict(params)
-
     if len(cmd) > 0:
-        untyped_params["shell"] = cmd[0]
+        params["shell"] = cmd[0]
         for i, arg in enumerate(cmd[1:]):
-            untyped_params[f"param{i}"] = arg
+            params[f"param{i}"] = arg
 
-        if background:
-            untyped_params["terminal"] = False
+        params["terminal"] = open_terminal
 
-    print_menu_item(text, out=out, **untyped_params)
+    print_menu_item(text, out=out, **params)
 
 
 def print_menu_separator(*, out: Writer = sys.stdout):

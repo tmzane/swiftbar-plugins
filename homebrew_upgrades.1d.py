@@ -52,7 +52,6 @@ def main():
     plugin.print_menu_action(
         f"Upgrade {total} package(s)",
         [BREW_PATH, "upgrade"],
-        background=True,
         refresh=True,
         sfimage="arrow.up.square",
     )
@@ -74,7 +73,6 @@ def print_group(title: str, packages: list[Package]):
         plugin.print_menu_action(
             f"{pkg.name:<{longest_name_length}}   {pkg.current_version}",
             [BREW_PATH, "upgrade", pkg.name],
-            background=True,
             refresh=True,
             sfimage="shippingbox",
             font="SFMono-Regular",  # use a monospaced font for a proper alignment

@@ -55,7 +55,6 @@ def main():
         plugin.print_menu_action(
             ctx.name,
             [DOCKER_PATH, "context", "use", ctx.name],
-            background=True,
             refresh=True,
             checked=ctx.current,
         )
@@ -84,6 +83,7 @@ def main():
         plugin.print_menu_action(
             f"{ctn.name:<{longest_name_length}}   {ctn.status}",
             [DOCKER_PATH, "logs", ctn.name],
+            open_terminal=True,
             font=MONOSPACED_FONT,  # use a monospaced font for a proper alignment
         )
 
