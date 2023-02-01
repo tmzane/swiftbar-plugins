@@ -30,7 +30,7 @@ class Package:
         self.current_version = current_version
 
 
-def main():
+def main() -> None:
     cmd = subprocess.run(
         [BREW_PATH, "outdated", "--json"],
         check=True,
@@ -60,7 +60,7 @@ def main():
     print_group("Casks", casks)
 
 
-def print_group(title: str, packages: list[Package]):
+def print_group(title: str, packages: list[Package]) -> None:
     if len(packages) == 0:
         return
 

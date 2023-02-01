@@ -36,7 +36,7 @@ class Container:
     status: str
 
 
-def main():
+def main() -> None:
     plugin.print_menu_item(PLUGIN_ICON)
     plugin.print_menu_separator()
     plugin.print_menu_item("Context")

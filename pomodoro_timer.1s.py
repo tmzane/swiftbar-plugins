@@ -29,7 +29,7 @@ NOTIFICATION_TEXT = "Well done! Feel free to take a break"
 NOTIFICATION_SCRIPT = f'display notification "{NOTIFICATION_TEXT}" with title "{PLUGIN_ICON} Pomodoro Timer"'
 
 
-def main():
+def main() -> None:
     # has the script been run because of a user's click?
     if os.getenv("CLICK") is not None:
         if Timer.is_ticking():
@@ -59,13 +59,13 @@ def main():
 
 class Timer:
     @classmethod
-    def start(cls):
+    def start(cls) -> None:
         with open(TMP_FILE, "w") as f:
             deadline = datetime.datetime.now() + WORK_INTERVAL
             f.write(deadline.isoformat())
 
     @classmethod
-    def stop(cls):
+    def stop(cls) -> None:
         os.remove(TMP_FILE)
 
     @classmethod
@@ -80,7 +80,7 @@ class Timer:
             return deadline - datetime.datetime.now()
 
 
-def display_notification():
+def display_notification() -> None:
     subprocess.run([OSASCRIPT_PATH, "-e", NOTIFICATION_SCRIPT], check=True)
 
 

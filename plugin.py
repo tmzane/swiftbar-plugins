@@ -40,9 +40,12 @@ class Params(typing.TypedDict, total=False):
     href: str
     shortcut: str
     # the following parameters are set automatically when using print_action():
-    # shell: str
-    # params: list[str]
-    # terminal: bool
+    shell: str
+    # param1: str
+    # param2: str
+    # ...
+    # paramN: str
+    terminal: bool
 
 
 class Writer(typing.Protocol):
@@ -54,7 +57,7 @@ class Writer(typing.Protocol):
         ...
 
 
-def print_menu_item(text: str, *, out: Writer = sys.stdout, **params: typing.Unpack[Params]):
+def print_menu_item(text: str, *, out: Writer = sys.stdout, **params: typing.Unpack[Params]) -> None:
     """
     Print a read-only menu item.
     """
@@ -63,7 +66,14 @@ def print_menu_item(text: str, *, out: Writer = sys.stdout, **params: typing.Unp
     print(f"{text} | {params_str}", file=out)
 
 
-def print_menu_action(text: str, cmd: list[str], *, open_terminal: bool = False, out: Writer = sys.stdout, **params: typing.Unpack[Params]):
+def print_menu_action(
+    text: str,
+    cmd: list[str],
+    *,
+    open_terminal: bool = False,
+    out: Writer = sys.stdout,
+    **params: typing.Unpack[Params],
+) -> None:
     """
     Print an interactive menu item that runs the provided command on click.
     """
@@ -71,14 +81,14 @@ def print_menu_action(text: str, cmd: list[str], *, open_terminal: bool = False,
     if len(cmd) > 0:
         params["shell"] = cmd[0]
         for i, arg in enumerate(cmd[1:]):
-            params[f"param{i}"] = arg
+            params[f"param{i}"] = arg  # type: ignore
 
         params["terminal"] = open_terminal
 
     print_menu_item(text, out=out, **params)
 
 
-def print_menu_separator(*, out: Writer = sys.stdout):
+def print_menu_separator(*, out: Writer = sys.stdout) -> None:
     """
     Print a menu separator.
     """

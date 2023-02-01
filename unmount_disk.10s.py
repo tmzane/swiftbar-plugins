@@ -22,7 +22,7 @@ DISKUTIL_PATH = "/usr/sbin/diskutil"
 MOUNT_POINT = "/Volumes/Expansion"
 
 
-def main():
+def main() -> None:
     if not os.path.ismount(MOUNT_POINT):
         return
 
