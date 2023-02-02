@@ -65,7 +65,7 @@ def main() -> None:
     plugin.print_menu_separator()
 
     if (l := len([pkg for pkg in packages if pkg.is_upgrading()])) > 0:
-        plugin.print_menu_item(f"Upgrading {l} package(s)", sfimage="arrow.up.square")
+        plugin.print_menu_item(f"Upgrading {l} package(s)", sfimage="arrow.up.square.fill")
     else:
         plugin.print_menu_action(
             f"Upgrade {len(packages)} package(s)",
@@ -90,7 +90,7 @@ def print_group(title: str, packages: list[Package]) -> None:
     for pkg in packages:
         text = f"{pkg.name:<{longest_name_length}}   {pkg.current_version}"
         if pkg.is_upgrading():
-            plugin.print_menu_item(text, sfimage="shippingbox", font=MONOSPACED_FONT)
+            plugin.print_menu_item(text, sfimage="shippingbox.fill", font=MONOSPACED_FONT)
             continue
 
         cmd = ["UPGRADE=" + pkg.name, __file__]
