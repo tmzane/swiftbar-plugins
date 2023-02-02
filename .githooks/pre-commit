@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -e # exit on first error
+
+echo "--- running tests ---"
+python -m unittest discover --verbose --pattern="*_test.py"
+echo ""
+
+echo "--- running mypy ---"
+mypy . --strict --pretty --enable-incomplete-feature=Unpack
+echo ""
+
+echo "--- running black ---"
+black . --check --diff --color --line-length=120
+echo ""
