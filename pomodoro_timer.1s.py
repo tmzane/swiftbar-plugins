@@ -74,7 +74,7 @@ class Timer:
 
     @classmethod
     def time_left(cls) -> datetime.timedelta:
-        with open(TMP_FILE, "r") as f:
+        with open(TMP_FILE) as f:
             text = f.read()
             deadline = datetime.datetime.fromisoformat(text)
             return deadline - datetime.datetime.now()

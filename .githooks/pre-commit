@@ -3,7 +3,7 @@
 set -e # exit on first error
 
 echo "--- running tests ---"
-python -m unittest discover --verbose --pattern="*_test.py"
+python -m unittest discover --pattern="*_test.py"
 echo ""
 
 echo "--- running mypy ---"
@@ -12,4 +12,8 @@ echo ""
 
 echo "--- running black ---"
 black . --check --diff --color --line-length=120
+echo ""
+
+echo "--- running ruff ---"
+ruff check . --select="F,E,W,I,UP" --line-length=120 && echo "OK"
 echo ""
