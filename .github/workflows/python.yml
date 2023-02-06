@@ -35,8 +35,11 @@ jobs:
       - name: Install linters
         run: pip install mypy black ruff
 
-      - name: Run linters
-        run: |
-          mypy . --enable-incomplete-feature=Unpack
-          black .
-          ruff check .
+      - name: Run Mypy
+        run: mypy . --enable-incomplete-feature=Unpack
+
+      - name: Run Black
+        run: black .
+
+      - name: Run Ruff
+        run: ruff check .
