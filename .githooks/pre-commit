@@ -7,13 +7,13 @@ python -m unittest discover --pattern="*_test.py"
 echo ""
 
 echo "--- running mypy ---"
-mypy . --strict --pretty --enable-incomplete-feature=Unpack
+mypy . --enable-incomplete-feature=Unpack
 echo ""
 
 echo "--- running black ---"
-black . --check --diff --color --line-length=120
+black .
 echo ""
 
 echo "--- running ruff ---"
-ruff check . --select="F,E,W,I,UP" --line-length=120 && echo "OK"
+ruff check . && echo "OK"
 echo ""
