@@ -1,5 +1,7 @@
 # SwiftBar plugins
 
+[![ci](https://github.com/junk1tm/swiftbar-plugins/actions/workflows/python.yml/badge.svg)](https://github.com/junk1tm/swiftbar-plugins/actions/workflows/python.yml)
+
 A collection of my plugins for [SwiftBar][1] (also compatible with [xbar][2]).
 
 ## 📦 Install
