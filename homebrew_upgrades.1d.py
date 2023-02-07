@@ -64,8 +64,8 @@ def main() -> None:
     plugin.print_menu_item(PLUGIN_ICON)
     plugin.print_menu_separator()
 
-    if (l := len([pkg for pkg in packages if pkg.is_upgrading()])) > 0:
-        plugin.print_menu_item(f"Upgrading {l} package(s)", sfimage="arrow.up.square.fill")
+    if (count := len([pkg for pkg in packages if pkg.is_upgrading()])) > 0:
+        plugin.print_menu_item(f"Upgrading {count} package(s)", sfimage="arrow.up.square.fill")
     else:
         plugin.print_menu_action(
             f"Upgrade {len(packages)} package(s)",
