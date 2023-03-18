@@ -27,7 +27,6 @@ ln -s /path/to/repo/plugin_name.py $SWIFTBAR_PLUGINS_PATH/plugin_name.py
 * [Docker containers](#docker-containers)
 * [Homebrew upgrades](#homebrew-upgrades)
 * [Pomodoro timer](#pomodoro-timer)
-* [Unmount disk](#unmount-disk)
 
 Most plugins support configuration via top-level constants, such as `PLUGIN_ICON`.
 Feel free to modify them for your needs.
@@ -51,10 +50,6 @@ Works best with the [built-in autoupdate mechanism][5].
 ![screenshot](screenshots/pomodoro_timer.png)
 
 The [Pomodoro timer][6] in your menu bar: start it with a single click!
-
-### Unmount disk
-
-Quickly unmount an external drive without need to open Finder or Disk Utility.
 
 [1]: https://github.com/swiftbar/SwiftBar
 [2]: https://github.com/matryer/xbar

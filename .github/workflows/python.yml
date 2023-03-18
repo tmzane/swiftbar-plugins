@@ -19,7 +19,7 @@ jobs:
           python-version: "3.11"
 
       - name: Run tests
-        run: python -m unittest discover --pattern="*_test.py"
+        run: python3 -m unittest discover --pattern="*_test.py"
 
   lint:
     runs-on: ubuntu-latest

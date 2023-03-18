@@ -3,7 +3,7 @@
 set -e # exit on first error
 
 echo "--- running tests ---"
-python -m unittest discover --pattern="*_test.py"
+python3 -m unittest discover --pattern="*_test.py"
 echo ""
 
 echo "--- running mypy ---"
