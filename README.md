@@ -1,6 +1,6 @@
 # SwiftBar plugins
 
-[![ci](https://github.com/junk1tm/swiftbar-plugins/actions/workflows/python.yml/badge.svg)](https://github.com/junk1tm/swiftbar-plugins/actions/workflows/python.yml)
+[![ci](https://github.com/tmzane/swiftbar-plugins/actions/workflows/python.yml/badge.svg)](https://github.com/tmzane/swiftbar-plugins/actions/workflows/python.yml)
 
 A collection of my plugins for [SwiftBar][1] (also compatible with [xbar][2]).
 
@@ -13,10 +13,10 @@ A collection of my plugins for [SwiftBar][1] (also compatible with [xbar][2]).
 2. Clone this repository
 
 ```shell
-git clone https://github.com/junk1tm/swiftbar-plugins.git
+git clone https://github.com/tmzane/swiftbar-plugins
 ```
 
-3. Create a symlink to the selected plugin in your [SwiftBar plugin folder][4]
+3. Create a symlink to the selected plugin in your [Plugin Folder][4]
 
 ```shell
 ln -s /path/to/repo/plugin_name.py $SWIFTBAR_PLUGINS_PATH/plugin_name.py
@@ -43,7 +43,7 @@ Click on one to open its log in a separate terminal tab.
 ![screenshot](screenshots/homebrew_upgrades.png)
 
 List and upgrade outdated Homebrew packages.
-Works best with the [built-in autoupdate mechanism][5].
+Works best with `brew`'s [builtin autoupdate mechanism][5].
 
 ### Pomodoro timer
 
