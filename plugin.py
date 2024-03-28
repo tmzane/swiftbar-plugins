@@ -53,8 +53,7 @@ class Writer(typing.Protocol):
     Anything that supports write.
     """
 
-    def write(self, _: str, /) -> int:
-        ...
+    def write(self, _: str, /) -> int: ...
 
 
 def print_menu_item(text: str, *, out: Writer = sys.stdout, **params: typing.Unpack[Params]) -> None:
