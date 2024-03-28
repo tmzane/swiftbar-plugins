@@ -1,12 +1,5 @@
 #!/usr/bin/env python3
 
-# <bitbar.title>Pomodoro timer</bitbar.title>
-# <bitbar.author.github>tmzane</bitbar.author.github>
-# <bitbar.desc>The Pomodoro timer in your menu bar: start it with a single click</bitbar.desc>
-# <bitbar.image>https://raw.githubusercontent.com/tmzane/swiftbar-plugins/main/screenshots/pomodoro_timer.png</bitbar.image>
-# <bitbar.dependencies>python3</bitbar.dependencies>
-# <bitbar.abouturl>https://github.com/tmzane/swiftbar-plugins#pomodoro-timer</bitbar.abouturl>
-
 # <swiftbar.hideRunInTerminal>true</swiftbar.hideRunInTerminal>
 # <swiftbar.hideDisablePlugin>true</swiftbar.hideDisablePlugin>
 # <swiftbar.hideSwiftBar>true</swiftbar.hideSwiftBar>

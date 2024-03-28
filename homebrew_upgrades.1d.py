@@ -1,12 +1,5 @@
 #!/usr/bin/env python3
 
-# <bitbar.title>Homebrew upgrades</bitbar.title>
-# <bitbar.author.github>tmzane</bitbar.author.github>
-# <bitbar.desc>List and upgrade outdated Homebrew packages</bitbar.desc>
-# <bitbar.image>https://raw.githubusercontent.com/tmzane/swiftbar-plugins/main/screenshots/homebrew_upgrades.png</bitbar.image>
-# <bitbar.dependencies>python3 brew</bitbar.dependencies>
-# <bitbar.abouturl>https://github.com/tmzane/swiftbar-plugins#homebrew-upgrades</bitbar.abouturl>
-
 # <swiftbar.hideRunInTerminal>true</swiftbar.hideRunInTerminal>
 # <swiftbar.hideDisablePlugin>true</swiftbar.hideDisablePlugin>
 # <swiftbar.hideSwiftBar>true</swiftbar.hideSwiftBar>

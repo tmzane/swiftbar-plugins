@@ -1,12 +1,5 @@
 #!/usr/bin/env python3
 
-# <bitbar.title>Docker containers</bitbar.title>
-# <bitbar.author.github>tmzane</bitbar.author.github>
-# <bitbar.desc>Switch between Docker contexts and list running containers</bitbar.desc>
-# <bitbar.image>https://raw.githubusercontent.com/tmzane/swiftbar-plugins/main/screenshots/docker_containers.png</bitbar.image>
-# <bitbar.dependencies>python3 docker</bitbar.dependencies>
-# <bitbar.abouturl>https://github.com/tmzane/swiftbar-plugins#docker-containers</bitbar.abouturl>
-
 # <swiftbar.hideRunInTerminal>true</swiftbar.hideRunInTerminal>
 # <swiftbar.hideDisablePlugin>true</swiftbar.hideDisablePlugin>
 # <swiftbar.hideSwiftBar>true</swiftbar.hideSwiftBar>
