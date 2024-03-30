@@ -22,15 +22,13 @@ class Package:
 
 
 def main() -> None:
-    cmd = subprocess.run(
-        [BREW_PATH, "outdated", "--json"],
-        check=True,
-        text=True,
-        capture_output=True,
-    )
+    dump = subprocess.check_output([BREW_PATH, "bundle", "dump", "--file=-", "--formula"], text=True)
+    manually_installed = {line.split('"')[1] for line in dump.splitlines()}  # format: brew "name", ...
 
-    data = json.loads(cmd.stdout)
-    formulas = [Package(**obj) for obj in data["formulae"]]
+    outdated = subprocess.check_output([BREW_PATH, "outdated", "--json"], text=True)
+    data = json.loads(outdated)
+
+    formulas = [Package(**obj) for obj in data["formulae"] if obj["name"] in manually_installed]
     casks = [Package(**obj) for obj in data["casks"]]
 
     total = len(formulas) + len(casks)
