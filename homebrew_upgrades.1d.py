@@ -3,6 +3,7 @@
 # <swiftbar.hideRunInTerminal>true</swiftbar.hideRunInTerminal>
 # <swiftbar.hideDisablePlugin>true</swiftbar.hideDisablePlugin>
 # <swiftbar.hideSwiftBar>true</swiftbar.hideSwiftBar>
+# <swiftbar.environment>[HOMEBREW_NO_ANALYTICS=1, HOMEBREW_NO_AUTO_UPDATE=1]</swiftbar.environment>
 
 import json
 import subprocess
@@ -22,8 +23,8 @@ class Package:
 
 
 def main() -> None:
-    dump = subprocess.check_output([BREW_PATH, "bundle", "dump", "--file=-", "--formula"], text=True)
-    manually_installed = {line.split('"')[1] for line in dump.splitlines()}  # format: brew "name", ...
+    dump = subprocess.check_output([BREW_PATH, "list", "--installed-on-request"], text=True)
+    manually_installed = {line for line in dump.splitlines()}
 
     outdated = subprocess.check_output([BREW_PATH, "outdated", "--json"], text=True)
     data = json.loads(outdated)
